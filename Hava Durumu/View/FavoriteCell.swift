@@ -50,7 +50,6 @@ class FavoriteCell: UITableViewCell {
         self.descriptionLabel.text = city.description
         self.descriptionBackground.backgroundColor = city.color
     }
-
 }
 
 extension FavoriteCell.ViewModel {
