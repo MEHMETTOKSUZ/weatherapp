@@ -12,6 +12,9 @@ class FavoriteVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    
+   
+    
     var viewModel = FavoriteViewModel()
     
     override func viewDidLoad() {
