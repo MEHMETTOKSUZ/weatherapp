@@ -52,7 +52,7 @@ class DetailsVC: UIViewController , MKMapViewDelegate {
     }
     
     func getDescription() {
-        if let image = UIImage(named: selectedCity?.description ?? "" ) {
+        if let image = UIImage(named: selectedCity?.weatherType.backgroundImage ?? "" ) {
             self.detailsDestinationImage.image = image
         } else {
             self.detailsDestinationImage.image = UIImage(named: "cloud")
@@ -112,5 +112,4 @@ class DetailsVC: UIViewController , MKMapViewDelegate {
         mapView.setCenter(locationCoordinate, animated: true)
         
     }
-    
 }

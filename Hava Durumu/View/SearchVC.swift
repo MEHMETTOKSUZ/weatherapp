@@ -60,29 +60,16 @@ class SearchVC: UIViewController, UISearchBarDelegate , MKMapViewDelegate{
             self.tempLabel.text = data.temp
             
             let lowercasedDescription = data.description.lowercased()
-            
-            if lowercasedDescription.contains("clear sky") {
-                self.destinationImageView.image = UIImage(systemName: "sun.max")
-                self.destinationLabel.text = "clear sky"
-            } else if lowercasedDescription.contains("cloud") {
-                self.destinationImageView.image = UIImage(systemName: "cloud")
-                self.destinationLabel.text = "cloudy"
-            } else if lowercasedDescription.contains("light rain") {
-                self.destinationImageView.image = UIImage(systemName: "cloud.rain")
-                self.destinationLabel.text = "light rain"
-            } else {
-                self.destinationImageView.image = nil
-                self.destinationLabel.text = "Açıklama Yok"
-            }
-            
+            self.destinationImageView.image = UIImage(systemName: data.weatherType.weatherIcon)
+            self.destinationLabel.text = lowercasedDescription
+                        
             self.cityNameLabel.isHidden = false
             self.tempLabel.isHidden = false
             self.favoriteButtonOutlet.isHidden = false
             self.destinationLabel.isHidden = false
             self.updateFavoriteButtonState()
-        } else {
-            
         }
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

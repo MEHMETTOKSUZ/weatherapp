@@ -35,6 +35,8 @@ struct Main: Codable {
 }
 
 struct Weather: Codable {
+    
+    let main: WeatherType
     let description: String
     let icon: String             
     
@@ -58,8 +60,25 @@ struct Sys: Codable {
     let sunset: Int
 }
 
-
-
+enum WeatherType: String, Codable {
+    
+    case Thunderstorm
+    case Drizzle
+    case Rain
+    case Snow
+    case Mist
+    case Smoke
+    case Haze
+    case Dust
+    case Fog
+    case Sand
+    case Ash
+    case Squall
+    case Tornado
+    case Clear
+    case Clouds
+    
+}
 
 
 

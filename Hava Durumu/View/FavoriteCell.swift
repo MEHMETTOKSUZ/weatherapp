@@ -20,11 +20,12 @@ class FavoriteCell: UITableViewCell {
         let lon: Double
         let speed: Double
         let country: String
-        let sunrise: Int         
+        let sunrise: Int
         let sunset: Int
-        let visibility: Int 
+        let visibility: Int
         let data: WeatherData
         let color: UIColor
+        let weatherType: WeatherType
     }
     
     @IBOutlet weak var pressureLabel: UILabel!
@@ -41,7 +42,7 @@ class FavoriteCell: UITableViewCell {
         self.humidityLabel.text = city.humidity
         self.pressureLabel.text = city.pressure
         
-        if let image = UIImage(named: city.description ) {
+        if let image = UIImage(named: city.weatherType.backgroundImage) {
             self.descritpionBackgroundImage.image = image
         } else {
             self.descritpionBackgroundImage.image = UIImage(named: "cloud")
@@ -81,7 +82,47 @@ extension FavoriteCell.ViewModel {
             sunset: response.sys.sunset,
             visibility: response.visibility,
             data: response,
-            color: TemperatureConverter.shared.temperatureColorForValue(temp: response.main.temp)
+            color: TemperatureConverter.shared.temperatureColorForValue(temp: response.main.temp),
+            weatherType: response.weather.first?.main ?? .Clouds
         )
+    }
+}
+
+extension WeatherType {
+    
+    var isWindType: Bool {
+        switch self {
+        case .Thunderstorm, .Drizzle, .Rain, .Snow, .Clear, .Clouds:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    var backgroundImage: String {
+        if !isWindType {
+            return rawValue
+        } else {
+            return "wind"
+        }
+    }
+    
+    var weatherIcon: String {
+        switch self {
+        case .Thunderstorm:
+            return "tornado"
+        case .Drizzle:
+            return "cloud.drizzle"
+        case .Rain:
+            return "cloud.rain"
+        case .Snow:
+            return "snow"
+        case .Clear:
+            return "sun.max"
+        case .Clouds:
+            return "cloud"
+        default:
+            return ""
+        }
     }
 }
