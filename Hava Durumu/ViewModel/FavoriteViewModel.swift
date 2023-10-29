@@ -22,7 +22,6 @@ class FavoriteViewModel {
         return favoriteCities[index]
     }
     
-    
     func loadFavoriteCities() {
         if let favoriteCitiesData = UserDefaults.standard.object(forKey: "FavoriteCities") as? Data {
             if let savedCities = try? JSONDecoder().decode([WeatherData].self, from: favoriteCitiesData) {
@@ -43,6 +42,5 @@ class FavoriteViewModel {
         self.didFinishLoad?()
         
     }
-    
 }
 
